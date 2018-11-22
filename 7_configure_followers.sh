@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 set -euo pipefail
 
 . utils.sh
@@ -13,9 +13,9 @@ echo "Preparing follower seed files..."
 
 # Create dir w/ guid from namespace name for parallel CI execution
 seed_dir="tmp-$CONJUR_NAMESPACE_NAME"
-mkdir -p $seed_dir
-
-$cli exec $master_pod_name evoke seed follower conjur-follower > "./$seed_dir/follower-seed.tar"
+# mkdir -p $seed_dir
+#
+#   $cli exec $master_pod_name evoke seed follower conjur-follower > "./$seed_dir/follower-seed.tar"
 
 pod_list=$($cli get pods -l role=follower --no-headers | awk '{ print $1 }')
 
@@ -39,4 +39,3 @@ wait  # for parallel configuration of followers
 rm -rf $seed_dir
 
 echo "Followers configured."
-

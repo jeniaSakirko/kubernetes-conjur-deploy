@@ -9,7 +9,7 @@ set_namespace default
 
 if [[ $PLATFORM == openshift ]]; then
   echo "Logging in as cluster admin..."
-  oc login -u $OSHIFT_CLUSTER_ADMIN_USERNAME
+  oc login https://openshift-310-qa.itci.conjur.net:8443 -u $OSHIFT_CLUSTER_ADMIN_USERNAME
 fi
 
 if has_namespace "$CONJUR_NAMESPACE_NAME"; then
@@ -54,4 +54,3 @@ if [[ "$PLATFORM" == "openshift" ]]; then
   echo "Logging in as Conjur admin user, provide password as needed..."
   oc login -u $OSHIFT_CONJUR_ADMIN_USERNAME
 fi
-
